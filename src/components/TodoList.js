@@ -13,6 +13,13 @@ class TodoList extends Component {
     this.props.store.filter = e.target.value
   }
 
+  createData = (e) => {
+    if (e.charCode === 13) {
+      this.props.store.todos.push(e.target.value)
+      e.target.value = ''
+    }
+  }
+
   state = { }
   render () {
     const { filteredTodos, filter } = this.props.store
@@ -20,8 +27,10 @@ class TodoList extends Component {
     return (
       <div className="container">
         <h1>TodoList with MobX</h1>
-        <h2>{filter}</h2>
-        <input type="text" className="filter" value={filter} onChange={this.filterData} />
+        <label name="create">Create todo item</label><br />
+        <input type="text" id="create" onKeyPress={this.createData} /><br />
+        <label name="filter">Filter item</label><br />
+        <input type="text" id="filter" value={filter} onChange={this.filterData} />
         <ul>
           {todoList}
         </ul>

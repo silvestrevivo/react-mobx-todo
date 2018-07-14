@@ -11,10 +11,10 @@ class TodoList extends Component {
 
   state = { }
   render () {
-    console.log('props', this.props.store)
+    const { todos } = this.props.store
     return (
-      <div>
-        <h1>TodoList {this.props.store.todos[0]}</h1>
+      <div className="container">
+        <h1>TodoList {todos[0]}</h1>
       </div>
     )
   }

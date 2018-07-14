@@ -9,12 +9,22 @@ class TodoList extends Component {
     store: PropTypes.object
   }
 
+  filterData = (e) => {
+    this.props.store.filter = e.target.value
+  }
+
   state = { }
   render () {
-    const { todos } = this.props.store
+    const { filteredTodos, filter } = this.props.store
+    const todoList = filteredTodos.map((item, id) => <li key={id}>{item}</li>)
     return (
       <div className="container">
-        <h1>TodoList {todos[0]}</h1>
+        <h1>TodoList with MobX</h1>
+        <h2>{filter}</h2>
+        <input type="text" className="filter" value={filter} onChange={this.filterData} />
+        <ul>
+          {todoList}
+        </ul>
       </div>
     )
   }

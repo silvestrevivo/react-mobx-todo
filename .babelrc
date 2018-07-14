@@ -1,46 +1,10 @@
 {
-  "plugins": [
-    [
-      "transform-class-properties",
-      {
-        "spec": true
-      }
-    ],
-    [
-      "transform-object-rest-spread"
-    ],
-    [
-      "transform-runtime"
-    ],
-    [
-      "react-hot-loader/babel"
-    ],
-    [
-      "transform-decorators-legacy"
-    ]
-  ],
   "presets": [
-    [
-      "env",
-      {
-        "modules": false
-      }
-    ],
-    "react",
-    "stage-0"
+    "env",
+    "react"
   ],
-  "env": {
-    "start": {
-      "presets": [
-        "react-hmre"
-      ]
-    },
-    "test": {
-      "presets": [
-        "env",
-        "react",
-        "stage-0"
-      ]
-    }
-  }
+  "plugins": [
+    "transform-decorators-legacy",
+    "transform-class-properties"
+  ]
 }

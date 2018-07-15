@@ -15,15 +15,26 @@ class TodoList extends Component {
 
   createData = (e) => {
     if (e.charCode === 13) {
-      this.props.store.todos.push(e.target.value)
+      this.props.store.createTodo(e.target.value)
       e.target.value = ''
     }
+  }
+
+  checkData = (item) => {
+    item.complete = !item.complete
   }
 
   state = { }
   render () {
     const { filteredTodos, filter } = this.props.store
-    const todoList = filteredTodos.map((item, id) => <li key={id}>{item}</li>)
+    const todoList = filteredTodos.map(item =>
+      <li key={item.id}>{item.value}
+        <input type="checkbox"
+          value={item.complete}
+          checked={item.complete}
+          onChange={() => this.checkData(item)} />
+      </li>
+    )
     return (
       <div className="container">
         <h1>TodoList with MobX</h1>
@@ -34,6 +45,7 @@ class TodoList extends Component {
         <ul>
           {todoList}
         </ul>
+        <button onClick={this.props.store.clearComplete}>Delete completed</button>
       </div>
     )
   }

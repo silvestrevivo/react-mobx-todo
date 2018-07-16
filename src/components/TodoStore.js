@@ -1,4 +1,4 @@
-import { computed, observable } from 'mobx'
+import { computed, observable, action } from 'mobx'
 
 class Todo {
   @observable value
@@ -20,11 +20,11 @@ class TodoStore {
     return this.todos.filter(item => !this.filter || matchesFilter.test(item.value))
   }
 
-  createTodo (value) {
+  @action createTodo (value) {
     this.todos.push(new Todo(value))
   }
 
-  clearComplete = () => {
+  @action clearComplete = () => {
     // arrow function because we are referring in the component directly
     // to this function and not through another one like with createTodo
     let completed = this.todos.filter(item => item.complete === false)

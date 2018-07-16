@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
-import {observer} from 'mobx-react'
 import PropTypes from 'prop-types'
+import {observer} from 'mobx-react'
 
 @observer
 class TodoList extends Component {
@@ -11,11 +11,13 @@ class TodoList extends Component {
 
   filterData = (e) => {
     this.props.store.filter = e.target.value
+    // not needed this.setState({})
   }
 
   createData = (e) => {
     if (e.charCode === 13) {
       this.props.store.createTodo(e.target.value)
+      // here we call an action in the store
       e.target.value = ''
     }
   }
